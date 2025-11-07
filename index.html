@@ -140,7 +140,6 @@
       stroke-linejoin: round;
     }
 
-    /* 🔥 Smooth glowing animation on hover */
     @keyframes iconGlow {
       0%, 100% { filter: drop-shadow(0 0 2px var(--accent)); }
       50% { filter: drop-shadow(0 0 8px var(--accent)); }
@@ -154,6 +153,26 @@
       background: rgba(255,255,255,0.12);
       transform: translateY(-3px);
       box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    }
+
+    /* NFC Toast styling */
+    #nfc-toast {
+      display:none;
+      position:fixed;
+      bottom:1.5rem;
+      left:50%;
+      transform:translateX(-50%);
+      background:rgba(0,0,0,0.7);
+      color:white;
+      padding:0.8rem 1.2rem;
+      border-radius:10px;
+      font-size:0.9rem;
+      z-index:1000;
+      backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,0.15);
+      box-shadow:0 0 10px rgba(255,87,34,0.6);
+      opacity:0;
+      transition:opacity 0.6s ease;
     }
 
     footer {
@@ -176,18 +195,15 @@
     <p>Hueco House, LLC<br>Port St. Lucie, FL<br>(772) 900-7865</p>
 
     <div class="buttons">
-      <!-- ✅ FIXED CALL ICON -->
       <a class="button" href="tel:+17729007865">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2
-                   19.86 19.86 0 0 1-8.63-3.07
-                   19.5 19.5 0 0 1-6-6
-                   19.86 19.86 0 0 1-3.07-8.63
-                   A2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72
-                   c.07.93.27 1.85.59 2.73a2 2 0 0 1-.45 2.11L8.09 9.91
-                   a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45
-                   c.88.32 1.8.52 2.73.59A2 2 0 0 1 22 16.92z"/>
-        </svg>
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2
+                 19.86 19.86 0 0 1-8.63-3.07
+                 19.5 19.5 0 0 1-6-6
+                 19.86 19.86 0 0 1-3.07-8.63
+                 A2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72
+                 c.07.93.27 1.85.59 2.73a2 2 0 0 1-.45 2.11L8.09 9.91
+                 a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45
+                 c.88.32 1.8.52 2.73.59A2 2 0 0 1 22 16.92z"/></svg>
         Call
       </a>
 
@@ -201,7 +217,8 @@
         Visit Website
       </a>
 
-      <a class="button" href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:Marlon;Alvarez;;;%0AFN:Marlon%20Alvarez%0AORG:Hueco%20House%2C%20LLC%0ATITLE:Creative%20Director%20%26%20Founder%0ATEL:+17729007865%0AEMAIL:contact@marlonalvarez.com%0AURL:https://marlonalvarez.com%0AADR:;;Port%20St.%20Lucie%2C%20FL;;;;%0AEND:VCARD" download="Marlon_Alvarez.vcf">
+      <!-- ✅ FIXED vCard for "Marlon Alvarez" -->
+      <a class="button" href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:Alvarez;Marlon;;;%0AFN:Marlon%20Alvarez%0AORG:Hueco%20House%2C%20LLC%0ATITLE:Creative%20Director%20%26%20Founder%0ATEL:+17729007865%0AEMAIL:contact@marlonalvarez.com%0AURL:https://marlonalvarez.com%0AADR:;;Port%20St.%20Lucie%2C%20FL;;;;%0AEND:VCARD" download="Marlon_Alvarez.vcf">
         <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M8 16a4 4 0 0 1 8 0"/></svg>
         Add to Contacts
       </a>
@@ -210,7 +227,11 @@
     <footer>Made by <a href="https://huecohouse.com" target="_blank">Hueco House</a></footer>
   </div>
 
+  <!-- NFC Toast -->
+  <div id="nfc-toast">📱 NFC tap detected — tap “Add to Contacts” to save Marlon’s info.</div>
+
   <script>
+    // Card hover tilt
     const card = document.getElementById('card');
     document.addEventListener('mousemove', e => {
       const { innerWidth, innerHeight } = window;
@@ -220,6 +241,31 @@
     });
     document.addEventListener('mouseleave', () => {
       card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+
+    // NFC detection
+    window.addEventListener('DOMContentLoaded', async () => {
+      const toast = document.getElementById('nfc-toast');
+
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('nfc')) showNfcToast();
+
+      if ('NDEFReader' in window) {
+        try {
+          const reader = new NDEFReader();
+          await reader.scan();
+          reader.onreading = () => showNfcToast();
+        } catch {}
+      }
+
+      function showNfcToast() {
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.opacity = 1, 50);
+        setTimeout(() => {
+          toast.style.opacity = 0;
+          setTimeout(() => toast.style.display = 'none', 600);
+        }, 6000);
+      }
     });
   </script>
 </body>
