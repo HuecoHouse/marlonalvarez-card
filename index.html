@@ -5,43 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Marlon Alvarez | Creative Director & Founder at Hueco House</title>
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Favicon: White "MA" on Black Circle -->
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCI+PGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9IiMwMDAiLz48dGV4dCB4PSI1MCUiIHk9IjU3JSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQ0IiBmb250LWZhbWlseT0iSW50ZXIsIHNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk1BPC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml">
-
-  <!-- Meta + OpenGraph -->
-  <meta name="description" content="Creative Director & Founder at Hueco House — Branding, Web Design & Marketing." />
-  <meta property="og:title" content="Marlon Alvarez | Creative Director & Founder at Hueco House" />
-  <meta property="og:description" content="Creative Director & Founder at Hueco House — Branding, Web Design & Marketing." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="Dynamic Headshots M1 Small.jpg" />
-  <meta property="og:url" content="https://huecohouse.com" />
-
-  <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Marlon Alvarez",
-    "jobTitle": "Creative Director & Founder",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Hueco House, LLC",
-      "url": "https://huecohouse.com"
-    },
-    "email": "mailto:contact@marlonalvarez.com",
-    "telephone": "+1-772-900-7865",
-    "url": "https://huecohouse.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Port St. Lucie",
-      "addressRegion": "FL",
-      "addressCountry": "US"
-    }
-  }
-  </script>
 
   <style>
     :root {
@@ -49,6 +14,7 @@
       --glass: rgba(0, 0, 0, 0.55);
       --border: rgba(255,255,255,0.1);
       --text: #f2f2f2;
+      --accent: rgba(255,87,34,.8);
       --transition: all 0.35s ease;
       --font: 'Inter', sans-serif;
     }
@@ -74,7 +40,6 @@
     }
 
     .card {
-      position: relative;
       background: var(--glass);
       backdrop-filter: blur(var(--blur));
       border: 1px solid var(--border);
@@ -87,16 +52,11 @@
       box-shadow: 0 0 40px rgba(0,0,0,0.4);
     }
 
-    .card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 60px rgba(0,0,0,0.5);
-    }
-
     .avatar {
       position: relative;
       width: 150px;
       height: 150px;
-      margin: 0 auto 1rem;
+      margin: 0 auto 0.5rem; /* tightened */
     }
 
     .avatar::before {
@@ -127,8 +87,6 @@
       transition: var(--transition);
     }
 
-    .card:hover .avatar img { transform: scale(1.05); }
-
     h1 {
       font-weight: 700;
       font-size: 1.8rem;
@@ -139,7 +97,7 @@
     h2 {
       font-weight: 500;
       font-size: 1.1rem;
-      color: rgba(255, 87, 34, .8);
+      color: var(--accent);
       margin-bottom: .5rem;
     }
 
@@ -156,7 +114,10 @@
     }
 
     a.button {
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.15);
       color: var(--text);
@@ -166,6 +127,14 @@
       font-weight: 500;
       transition: var(--transition);
       backdrop-filter: blur(6px);
+    }
+
+    a.button svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent);
+      stroke-width: 2;
+      fill: none;
     }
 
     a.button:hover {
@@ -179,18 +148,8 @@
       font-size: 0.75rem;
       color: rgba(255,255,255,0.3);
     }
-
-    footer a {
-      color: rgba(255,255,255,0.4);
-      text-decoration: none;
-    }
-
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
     footer a:hover { color: #fff; }
-
-    @media (hover: none) {
-      .card:hover { transform: none; }
-      .card:hover .avatar img { transform: none; }
-    }
   </style>
 </head>
 
@@ -204,18 +163,31 @@
     <p>Hueco House, LLC<br>Port St. Lucie, FL<br>(772) 900-7865</p>
 
     <div class="buttons">
-      <a class="button" href="tel:+17729007865">📞 Call</a>
-      <a class="button" href="mailto:contact@marlonalvarez.com">✉️ Email</a>
-      <a class="button" href="https://huecohouse.com" target="_blank">🌐 Visit Website</a>
-      <!-- ✅ Fixed vCard block -->
-      <a class="button" href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:Marlon;Alvarez;;;%0AFN:Marlon%20Alvarez%0AORG:Hueco%20House%2C%20LLC%0ATITLE:Creative%20Director%20%26%20Founder%0ATEL:+17729007865%0AEMAIL:contact@marlonalvarez.com%0AURL:https://huecohouse.com%0AADR:;;Port%20St.%20Lucie%2C%20FL;;;;%0AEND:VCARD" download="Marlon_Alvarez.vcf">💾 Save Contact</a>
+      <a class="button" href="tel:+17729007865">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 8.81 19.79 19.79 0 0 1 0 0a2 2 0 0 1 2-2h3a2 2 0 0 1 2 1.72 12.44 12.44 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L6.21 7.79a16 16 0 0 0 10 10l1.15-1.15a2 2 0 0 1 2.11-.45 12.44 12.44 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call
+      </a>
+
+      <a class="button" href="mailto:contact@marlonalvarez.com">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none"/><path d="M22 6l-10 7L2 6"/></svg>
+        Email
+      </a>
+
+      <a class="button" href="https://marlonalvarez.com" target="_blank">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg>
+        Visit Website
+      </a>
+
+      <a class="button" href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:Marlon;Alvarez;;;%0AFN:Marlon%20Alvarez%0AORG:Hueco%20House%2C%20LLC%0ATITLE:Creative%20Director%20%26%20Founder%0ATEL:+17729007865%0AEMAIL:contact@marlonalvarez.com%0AURL:https://marlonalvarez.com%0AADR:;;Port%20St.%20Lucie%2C%20FL;;;;%0AEND:VCARD" download="Marlon_Alvarez.vcf">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M8 16a4 4 0 0 1 8 0"/></svg>
+        Add to Contacts
+      </a>
     </div>
 
     <footer>Made by <a href="https://huecohouse.com" target="_blank">Hueco House</a></footer>
   </div>
 
   <script>
-    // Subtle hover tilt motion
     const card = document.getElementById('card');
     document.addEventListener('mousemove', e => {
       const { innerWidth, innerHeight } = window;
