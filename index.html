@@ -155,11 +155,11 @@
       box-shadow: 0 0 15px rgba(255,255,255,0.1);
     }
 
-    /* NFC Toast styling */
+    /* NFC Toast styling with slide */
     #nfc-toast {
       display:none;
       position:fixed;
-      bottom:1.5rem;
+      bottom:-3rem;
       left:50%;
       transform:translateX(-50%);
       background:rgba(0,0,0,0.7);
@@ -172,13 +172,17 @@
       border:1px solid rgba(255,255,255,0.15);
       box-shadow:0 0 10px rgba(255,87,34,0.6);
       opacity:0;
-      transition:opacity 0.6s ease;
       display:flex;
       align-items:center;
       gap:0.5rem;
+      transition: all 0.6s ease;
     }
 
-    /* Pulsing NFC signal icon */
+    .show-toast {
+      opacity:1 !important;
+      bottom:1.5rem !important;
+    }
+
     .nfc-icon {
       width: 18px;
       height: 18px;
@@ -283,9 +287,9 @@
 
       function showNfcToast() {
         toast.style.display = 'flex';
-        setTimeout(() => toast.style.opacity = 1, 50);
+        setTimeout(() => toast.classList.add('show-toast'), 50);
         setTimeout(() => {
-          toast.style.opacity = 0;
+          toast.classList.remove('show-toast');
           setTimeout(() => toast.style.display = 'none', 600);
         }, 6000);
       }
