@@ -136,6 +136,8 @@
       stroke-width: 2;
       fill: none;
       transition: var(--transition);
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     /* 🔥 Smooth glowing animation on hover */
@@ -174,8 +176,18 @@
     <p>Hueco House, LLC<br>Port St. Lucie, FL<br>(772) 900-7865</p>
 
     <div class="buttons">
+      <!-- ✅ FIXED CALL ICON -->
       <a class="button" href="tel:+17729007865">
-        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 8.81 3.07 19.79 19.79 0 0 1 21.92 6a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1.5a2 2 0 0 1-2-1.72A12.44 12.44 0 0 0 16 8a2 2 0 0 1 .45-2.11L18.21 4a16 16 0 0 0-10 10l1.15 1.15a2 2 0 0 1 .45 2.11 12.44 12.44 0 0 0-.7 2.81A2 2 0 0 1 6 22H3a2 2 0 0 1-2-2v-3" /></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+                   19.86 19.86 0 0 1-8.63-3.07
+                   19.5 19.5 0 0 1-6-6
+                   19.86 19.86 0 0 1-3.07-8.63
+                   A2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72
+                   c.07.93.27 1.85.59 2.73a2 2 0 0 1-.45 2.11L8.09 9.91
+                   a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45
+                   c.88.32 1.8.52 2.73.59A2 2 0 0 1 22 16.92z"/>
+        </svg>
         Call
       </a>
 
