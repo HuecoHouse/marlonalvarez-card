@@ -6,13 +6,12 @@
   <title>Marlon Alvarez | Creative Director & Founder at Hueco House</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCI+PGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9IiMwMDAiLz48dGV4dCB4PSI1MCUiIHk9IjU3JSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQ0IiBmb250LWZhbWlseT0iSW50ZXIsIHNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk1BPC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml">
 
   <style>
     :root {
       --blur: 15px;
-      --glass: rgba(0, 0, 0, 0.55);
-      --border: rgba(255,255,255,0.1);
+      --glass: rgba(20, 20, 20, 0.45);
+      --border: rgba(255,255,255,0.08);
       --text: #f2f2f2;
       --accent: rgba(255,87,34,.8);
       --transition: all 0.35s ease;
@@ -22,7 +21,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: url("3.jpg") center/cover no-repeat fixed;
+      background: #000;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -40,6 +39,7 @@
     }
 
     .card {
+      position: relative;
       background: var(--glass);
       backdrop-filter: blur(var(--blur));
       border: 1px solid var(--border);
@@ -48,8 +48,24 @@
       width: 90%;
       max-width: 420px;
       text-align: center;
-      transition: var(--transition);
+      overflow: hidden;
       box-shadow: 0 0 40px rgba(0,0,0,0.4);
+    }
+
+    .card video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+      z-index: 0;
+    }
+
+    .card > *:not(video) {
+      position: relative;
+      z-index: 1;
     }
 
     .avatar {
@@ -59,32 +75,13 @@
       margin: 0 auto 0.5rem;
     }
 
-    .avatar::before {
-      content: "";
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 160px; height: 160px;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-      animation: pulse 3s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
-      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
-    }
-
     .avatar img {
-      position: relative;
-      z-index: 1;
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.15);
       object-fit: cover;
-      box-shadow: 0 0 25px rgba(255,255,255,0.08);
-      transition: var(--transition);
+      box-shadow: 0 0 25px rgba(255,87,34,0.3);
     }
 
     h1 {
@@ -145,31 +142,31 @@
       50% { filter: drop-shadow(0 0 8px var(--accent)); }
     }
 
-    .card:hover svg, a.button:hover svg {
+    a.button:hover svg {
       animation: iconGlow 1.4s ease-in-out infinite;
     }
 
     a.button:hover {
       background: rgba(255,255,255,0.12);
       transform: translateY(-3px);
-      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+      box-shadow: 0 0 15px rgba(255,87,34,0.15);
     }
 
-    /* NFC Toast styling with slide */
+    /* NFC Toast */
     #nfc-toast {
       display:none;
       position:fixed;
       bottom:-3rem;
       left:50%;
       transform:translateX(-50%);
-      background:rgba(0,0,0,0.7);
+      background:rgba(20,20,20,0.8);
       color:white;
       padding:0.8rem 1.2rem;
       border-radius:10px;
       font-size:0.9rem;
       z-index:1000;
       backdrop-filter:blur(8px);
-      border:1px solid rgba(255,255,255,0.15);
+      border:1px solid rgba(255,255,255,0.1);
       box-shadow:0 0 10px rgba(255,87,34,0.6);
       opacity:0;
       display:flex;
@@ -203,18 +200,23 @@
       font-size: 0.75rem;
       color: rgba(255,255,255,0.3);
     }
-    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { color: #fff; }
   </style>
 </head>
 
 <body>
   <div class="card" id="card">
+    <video autoplay muted loop playsinline>
+      <source src="abstract-gradient-glass-geometry-background-2025-10-16-07-49-13-utc.mp4" type="video/mp4">
+    </video>
+
     <div class="avatar">
       <img src="Dynamic Headshots M1 Small.jpg" alt="Marlon Alvarez">
     </div>
+
     <h1>Marlon Alvarez</h1>
-    <h2>CEO | Founder</h2>
+    <h2>Creative Director & Founder</h2>
     <p>Hueco House, LLC<br>Port St. Lucie, FL<br>(772) 900-7865</p>
 
     <div class="buttons">
@@ -249,7 +251,6 @@
     <footer>Made by <a href="https://huecohouse.com" target="_blank">Hueco House</a></footer>
   </div>
 
-  <!-- NFC Toast -->
   <div id="nfc-toast">
     <svg class="nfc-icon" viewBox="0 0 24 24">
       <path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
