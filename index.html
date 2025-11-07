@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marlon Alvarez | CEO | Hueco House, LLC</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #f8f6f2;
+      --accent: #f5e6cc;
+      --font-main: 'Inter', sans-serif;
+    }
+
+    @keyframes fadeUp {
+      0% {opacity: 0; transform: translateY(40px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .container {
+      animation: fadeUp 1s ease-out;
+      max-width: 420px;
+      width: 100%;
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #222;
+      background-image: url('https://via.placeholder.com/140x140.png?text=Your+Photo');
+      background-size: cover;
+      background-position: center;
+      margin: 0 auto 1.5rem;
+      border: 2px solid var(--accent);
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+
+    h2 {
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    a.button {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    a.button:hover {
+      background: #fff;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="avatar"></div>
+    <h1>Marlon Alvarez</h1>
+    <h2>CEO | Operations</h2>
+    <p>Hueco House, LLC<br>Port St. Lucie, FL</p>
+
+    <div class="buttons">
+      <a class="button" href="tel:+17729007865">📞 Call</a>
+      <a class="button" href="mailto:contact@marlonalvarez.com">✉️ Email</a>
+      <a class="button" href="https://huecohouse.com" target="_blank">🌐 Visit Website</a>
+      <a class="button" href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:Marlon%20Alvarez%0AORG:Hueco%20House%2C%20LLC%0ATITLE:CEO%20%7C%20Operations%0ATEL:+17729007865%0AEMAIL:contact@marlonalvarez.com%0AURL:https://huecohouse.com%0AADR:;;Port%20St.%20Lucie%2C%20FL;;;;%0AEND:VCARD" download="Marlon_Alvarez.vcf">💾 Save Contact</a>
+    </div>
+
+    <footer>© <span id="year"></span> Marlon Alvarez. All rights reserved.</footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
