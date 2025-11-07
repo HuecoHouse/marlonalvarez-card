@@ -173,6 +173,25 @@
       box-shadow:0 0 10px rgba(255,87,34,0.6);
       opacity:0;
       transition:opacity 0.6s ease;
+      display:flex;
+      align-items:center;
+      gap:0.5rem;
+    }
+
+    /* Pulsing NFC signal icon */
+    .nfc-icon {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent);
+      stroke-width: 2;
+      fill: none;
+      animation: nfcPulse 1.4s ease-in-out infinite;
+      stroke-linecap: round;
+    }
+
+    @keyframes nfcPulse {
+      0%,100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 2px var(--accent)); }
+      50% { opacity: 0.6; transform: scale(1.2); filter: drop-shadow(0 0 6px var(--accent)); }
     }
 
     footer {
@@ -217,7 +236,6 @@
         Visit Website
       </a>
 
-      <!-- ✅ FIXED vCard for "Marlon Alvarez" -->
       <a class="button" href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:Alvarez;Marlon;;;%0AFN:Marlon%20Alvarez%0AORG:Hueco%20House%2C%20LLC%0ATITLE:Creative%20Director%20%26%20Founder%0ATEL:+17729007865%0AEMAIL:contact@marlonalvarez.com%0AURL:https://marlonalvarez.com%0AADR:;;Port%20St.%20Lucie%2C%20FL;;;;%0AEND:VCARD" download="Marlon_Alvarez.vcf">
         <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M8 16a4 4 0 0 1 8 0"/></svg>
         Add to Contacts
@@ -228,10 +246,15 @@
   </div>
 
   <!-- NFC Toast -->
-  <div id="nfc-toast">📱 NFC tap detected — tap “Add to Contacts” to save Marlon’s info.</div>
+  <div id="nfc-toast">
+    <svg class="nfc-icon" viewBox="0 0 24 24">
+      <path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+      <path d="M8 12a4 4 0 0 1 8 0M10 12a2 2 0 0 1 4 0"/>
+    </svg>
+    NFC tap detected — tap “Add to Contacts” to save Marlon’s info.
+  </div>
 
   <script>
-    // Card hover tilt
     const card = document.getElementById('card');
     document.addEventListener('mousemove', e => {
       const { innerWidth, innerHeight } = window;
@@ -259,7 +282,7 @@
       }
 
       function showNfcToast() {
-        toast.style.display = 'block';
+        toast.style.display = 'flex';
         setTimeout(() => toast.style.opacity = 1, 50);
         setTimeout(() => {
           toast.style.opacity = 0;
