@@ -3,22 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marlon Alvarez | CEO | Hueco House, LLC</title>
+  <title>Marlon Alvarez | Creative Director & Founder at Hueco House</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon: White "MA" on Black Circle -->
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCI+PGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9IiMwMDAiLz48dGV4dCB4PSI1MCUiIHk9IjU3JSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQ0IiBmb250LWZhbWlseT0iSW50ZXIsIHNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk1BPC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml">
+
+  <!-- Meta + OpenGraph -->
+  <meta name="description" content="Creative Director & Founder at Hueco House — Branding, Web Design & Marketing." />
+  <meta property="og:title" content="Marlon Alvarez | Creative Director & Founder at Hueco House" />
+  <meta property="og:description" content="Creative Director & Founder at Hueco House — Branding, Web Design & Marketing." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="Dynamic Headshots M1 Small.jpg" />
+  <meta property="og:url" content="https://huecohouse.com" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Marlon Alvarez",
+    "jobTitle": "Creative Director & Founder",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Hueco House, LLC",
+      "url": "https://huecohouse.com"
+    },
+    "email": "mailto:contact@marlonalvarez.com",
+    "telephone": "+1-772-900-7865",
+    "url": "https://huecohouse.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Port St. Lucie",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    }
+  }
+  </script>
+
   <style>
     :root {
       --blur: 15px;
-      --glass-dark: rgba(0, 0, 0, 0.55);
-      --border: rgba(255, 255, 255, 0.1);
-      --text-light: #f2f2f2;
+      --glass: rgba(0, 0, 0, 0.55);
+      --border: rgba(255,255,255,0.1);
+      --text: #f2f2f2;
+      --accent: rgba(255,255,255,0.15);
       --transition: all 0.35s ease;
-      --font-main: 'Inter', sans-serif;
+      --font: 'Inter', sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: url("3.jpg") center/cover no-repeat fixed;
@@ -27,61 +63,83 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      font-family: var(--font-main);
-      color: var(--text-light);
-      text-align: center;
+      font-family: var(--font);
+      color: var(--text);
       overflow: hidden;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .card {
       position: relative;
-      background: var(--glass-dark);
+      background: var(--glass);
       backdrop-filter: blur(var(--blur));
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 2.5rem;
       width: 90%;
       max-width: 420px;
+      text-align: center;
       transition: var(--transition);
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 40px rgba(0,0,0,0.4);
     }
 
     .card:hover {
       transform: scale(1.02);
-      box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 60px rgba(0,0,0,0.5);
     }
 
     .avatar {
+      position: relative;
       width: 150px;
       height: 150px;
-      border-radius: 50%;
-      overflow: hidden;
       margin: 0 auto 1.5rem;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.08);
-      transition: var(--transition);
+    }
+
+    .avatar::before {
+      content: "";
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
     }
 
     .avatar img {
-      width: 100%;
-      height: 100%;
+      position: relative;
+      z-index: 1;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.2);
       object-fit: cover;
+      box-shadow: 0 0 25px rgba(255,255,255,0.08);
       transition: var(--transition);
     }
 
-    .card:hover .avatar img {
-      transform: scale(1.05);
-    }
+    .card:hover .avatar img { transform: scale(1.05); }
 
     h1 {
+      font-weight: 700;
       font-size: 1.8rem;
       letter-spacing: 0.05em;
       margin-bottom: 0.25rem;
     }
 
     h2 {
-      font-size: 1rem;
       font-weight: 400;
+      font-size: 1rem;
       color: rgba(255,255,255,0.7);
       margin-bottom: 1rem;
     }
@@ -102,7 +160,7 @@
       display: inline-block;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.15);
-      color: var(--text-light);
+      color: var(--text);
       text-decoration: none;
       padding: 0.9rem 1.2rem;
       border-radius: 10px;
@@ -123,6 +181,13 @@
       color: rgba(255,255,255,0.3);
     }
 
+    footer a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: #fff; }
+
     @media (hover: none) {
       .card:hover { transform: none; }
       .card:hover .avatar img { transform: none; }
@@ -133,31 +198,29 @@
 <body>
   <div class="card" id="card">
     <div class="avatar">
-      <img src="Dynamic Headshots M1 Small.jpg" alt="Profile Photo">
+      <img src="Dynamic Headshots M1 Small.jpg" alt="Marlon Alvarez">
     </div>
     <h1>Marlon Alvarez</h1>
-    <h2>CEO | Operations</h2>
-    <p>Hueco House, LLC<br>Port St. Lucie, FL</p>
+    <h2>Creative Director & Founder at Hueco House</h2>
+    <p>Hueco House, LLC<br>Port St. Lucie, FL<br>+1 (772) 900-7865</p>
 
     <div class="buttons">
       <a class="button" href="tel:+17729007865">📞 Call</a>
       <a class="button" href="mailto:contact@marlonalvarez.com">✉️ Email</a>
       <a class="button" href="https://huecohouse.com" target="_blank">🌐 Visit Website</a>
-      <a class="button" href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:Marlon%20Alvarez%0AORG:Hueco%20House%2C%20LLC%0ATITLE:CEO%20%7C%20Operations%0ATEL:+17729007865%0AEMAIL:contact@marlonalvarez.com%0AURL:https://huecohouse.com%0AADR:;;Port%20St.%20Lucie%2C%20FL;;;;%0AEND:VCARD" download="Marlon_Alvarez.vcf">💾 Save Contact</a>
+      <a class="button" href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:Marlon%20Alvarez%0AORG:Hueco%20House%2C%20LLC%0ATITLE:Creative%20Director%20%26%20Founder%0ATEL:+17729007865%0AEMAIL:contact@marlonalvarez.com%0AURL:https://huecohouse.com%0AADR:;;Port%20St.%20Lucie%2C%20FL;;;;%0AEND:VCARD" download="Marlon_Alvarez.vcf">💾 Save Contact</a>
     </div>
 
-    <footer>© <span id="year"></span> Marlon Alvarez. All rights reserved.</footer>
+    <footer>Made by <a href="https://huecohouse.com" target="_blank">Hueco House</a></footer>
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Parallax hover motion
+    // Subtle hover tilt motion
     const card = document.getElementById('card');
     document.addEventListener('mousemove', e => {
       const { innerWidth, innerHeight } = window;
-      const x = (e.clientX / innerWidth - 0.5) * 10;
-      const y = (e.clientY / innerHeight - 0.5) * 10;
+      const x = (e.clientX / innerWidth - 0.5) * 6;
+      const y = (e.clientY / innerHeight - 0.5) * 6;
       card.style.transform = `rotateY(${x}deg) rotateX(${-y}deg) scale(1.02)`;
     });
     document.addEventListener('mouseleave', () => {
