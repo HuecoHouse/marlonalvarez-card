@@ -12,10 +12,10 @@
   <style>
     :root {
       --blur: 15px;
-      --glass: rgba(255, 255, 255, 0.18);
+      --glass: rgba(255, 255, 255, 0.1);
       --border: rgba(255,255,255,0.25);
-      --text: #fdfdfd;
-      --accent: rgba(255,87,34,.8);
+      --text: #fff;
+      --accent: rgba(255,140,60,0.45);
       --transition: all 0.35s ease;
       --font: 'Inter', sans-serif;
     }
@@ -32,12 +32,6 @@
       font-family: var(--font);
       color: var(--text);
       overflow: hidden;
-      animation: fadeIn 0.8s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .card {
@@ -51,17 +45,16 @@
       max-width: 420px;
       text-align: center;
       overflow: hidden;
-      box-shadow: 0 0 40px rgba(255,87,34,0.15);
+      box-shadow: 0 0 40px rgba(255,140,60,0.15);
+      transition: transform 0.3s ease;
     }
 
     .card video {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
-      opacity: 0.4;
+      opacity: 0.5;
       z-index: 0;
     }
 
@@ -70,40 +63,30 @@
       z-index: 1;
     }
 
-    .avatar {
-      width: 150px;
-      height: 150px;
-      margin: 0 auto 0.5rem;
-    }
-
     .avatar img {
-      width: 150px;
-      height: 150px;
+      width: 150px; height: 150px;
       border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.6);
+      border: 2px solid rgba(255,255,255,0.7);
       object-fit: cover;
-      box-shadow: 0 0 25px rgba(255,87,34,0.3);
+      box-shadow: 0 0 25px rgba(255,140,60,0.3);
     }
 
     h1 {
-      font-weight: 700;
-      font-size: 1.8rem;
+      font-weight: 700; font-size: 1.8rem;
+      margin-top: 0.6rem;
       color: #fff;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.15rem;
       text-shadow: 0 1px 2px rgba(0,0,0,0.6);
     }
 
     h2 {
-      font-weight: 500;
-      font-size: 1.1rem;
-      color: var(--accent);
-      margin-bottom: .5rem;
+      font-weight: 500; font-size: 1.1rem;
+      color: rgba(255,140,60,0.85);
+      margin-bottom: 0.5rem;
     }
 
     p {
       font-size: 0.95rem;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.9);
       margin-bottom: 1.5rem;
       text-shadow: 0 1px 1px rgba(0,0,0,0.4);
     }
@@ -119,9 +102,9 @@
       align-items: center;
       justify-content: center;
       gap: 0.6rem;
-      background: rgba(255,255,255,0.15);
+      background: rgba(0,0,0,0.3);
       border: 1px solid rgba(255,255,255,0.25);
-      color: var(--text);
+      color: #fff;
       text-decoration: none;
       padding: 0.9rem 1.2rem;
       border-radius: 10px;
@@ -131,80 +114,82 @@
     }
 
     a.button svg {
-      width: 22px;
-      height: 22px;
-      stroke: var(--accent);
+      width: 22px; height: 22px;
+      stroke: rgba(255,140,60,0.8);
       stroke-width: 2;
       fill: none;
-      transition: var(--transition);
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
-    @keyframes iconGlow {
-      0%, 100% { filter: drop-shadow(0 0 2px var(--accent)); }
-      50% { filter: drop-shadow(0 0 8px var(--accent)); }
-    }
-
-    a.button:hover svg {
-      animation: iconGlow 1.4s ease-in-out infinite;
-    }
-
     a.button:hover {
-      background: rgba(255,255,255,0.25);
+      background: rgba(255,140,60,0.15);
       transform: translateY(-3px);
-      box-shadow: 0 0 15px rgba(255,87,34,0.25);
+      box-shadow: 0 0 15px rgba(255,140,60,0.25);
+    }
+
+    /* Ripple */
+    .ripple {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 20px; height: 20px;
+      background: radial-gradient(circle, rgba(255,140,60,0.6) 0%, rgba(255,140,60,0) 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes rippleExpand {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 1; filter: blur(0px); }
+      60% { transform: translate(-50%, -50%) scale(5); opacity: 0.7; filter: blur(3px); }
+      100% { transform: translate(-50%, -50%) scale(8); opacity: 0; filter: blur(5px); }
     }
 
     /* NFC Toast */
     #nfc-toast {
-      display:none;
-      position:fixed;
-      bottom:-3rem;
-      left:50%;
-      transform:translateX(-50%);
-      background:rgba(255,255,255,0.2);
-      color:#fff;
-      padding:0.8rem 1.2rem;
-      border-radius:10px;
-      font-size:0.9rem;
-      z-index:1000;
-      backdrop-filter:blur(12px);
-      border:1px solid rgba(255,255,255,0.15);
-      box-shadow:0 0 10px rgba(255,87,34,0.3);
-      opacity:0;
-      display:flex;
-      align-items:center;
-      gap:0.5rem;
+      display: none;
+      position: fixed;
+      bottom: -3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 0 10px rgba(255,140,60,0.3);
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       transition: all 0.6s ease;
     }
 
     .show-toast {
-      opacity:1 !important;
-      bottom:1.5rem !important;
+      opacity: 1 !important;
+      bottom: 1.5rem !important;
     }
 
     .nfc-icon {
-      width: 18px;
-      height: 18px;
-      stroke: var(--accent);
+      width: 18px; height: 18px;
+      stroke: rgba(255,140,60,0.8);
       stroke-width: 2;
       fill: none;
-      animation: nfcPulse 1.4s ease-in-out infinite;
       stroke-linecap: round;
-    }
-
-    @keyframes nfcPulse {
-      0%,100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 2px var(--accent)); }
-      50% { opacity: 0.6; transform: scale(1.2); filter: drop-shadow(0 0 6px var(--accent)); }
     }
 
     footer {
       margin-top: 2.5rem;
       font-size: 0.75rem;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.6);
     }
-    footer a { color: var(--accent); text-decoration: none; }
+
+    footer a { color: rgba(255,140,60,0.9); text-decoration: none; }
     footer a:hover { color: #fff; }
   </style>
 </head>
@@ -214,6 +199,7 @@
     <video autoplay muted loop playsinline>
       <source src="abstract-gradient-glass-geometry-background-2025-10-16-07-49-13-utc.mp4" type="video/mp4">
     </video>
+    <div class="ripple" id="ripple"></div>
 
     <div class="avatar">
       <img src="Dynamic Headshots M1 Small.jpg" alt="Marlon Alvarez">
@@ -264,6 +250,25 @@
 
   <script>
     const card = document.getElementById('card');
+    const ripple = document.getElementById('ripple');
+    let rippleCooldown = false;
+
+    // Ripple animation
+    function triggerRipple() {
+      if (rippleCooldown) return;
+      rippleCooldown = true;
+      ripple.style.animation = 'none';
+      void ripple.offsetWidth; // restart animation
+      ripple.style.animation = 'rippleExpand 0.7s ease-out forwards';
+      setTimeout(() => rippleCooldown = false, 1500);
+    }
+
+    // Trigger on click/tap
+    card.addEventListener('click', triggerRipple);
+    // Intro pulse
+    window.addEventListener('load', () => setTimeout(triggerRipple, 400));
+
+    // Tilt effect
     document.addEventListener('mousemove', e => {
       const { innerWidth, innerHeight } = window;
       const x = (e.clientX / innerWidth - 0.5) * 6;
@@ -274,13 +279,11 @@
       card.style.transform = 'rotateY(0deg) rotateX(0deg)';
     });
 
-    // NFC detection
+    // NFC Toast logic
     window.addEventListener('DOMContentLoaded', async () => {
       const toast = document.getElementById('nfc-toast');
-
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.has('nfc')) showNfcToast();
-
       if ('NDEFReader' in window) {
         try {
           const reader = new NDEFReader();
@@ -288,7 +291,6 @@
           reader.onreading = () => showNfcToast();
         } catch {}
       }
-
       function showNfcToast() {
         toast.style.display = 'flex';
         setTimeout(() => toast.classList.add('show-toast'), 50);
