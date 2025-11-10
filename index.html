@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- META -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Digital business card for Marlon Alvarez, CEO & Founder at Hueco House, Port St. Lucie FL." />
+  <meta name="keywords" content="Marlon Alvarez, Hueco House, digital business card, creative director, marketing, web design, Florida" />
+  <meta name="author" content="Hueco House" />
+  <meta name="theme-color" content="#ff8c3c" />
   <title>Marlon Alvarez | CEO | Founder at Hueco House</title>
 
-  <!-- Font + Favicon -->
+  <!-- FONT + FAVICON -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="Dynamic Headshots M1 Small.jpg">
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCI+PGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9IiMwMDAiLz48dGV4dCB4PSI1MCUiIHk9IjU3JSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjQ0IiBmb250LWZhbWlseT0iSW50ZXIsIHNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk1BPC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml">
 
+  <!-- STYLES -->
   <style>
     :root {
       --blur: 15px;
       --glass: rgba(255, 255, 255, 0.1);
       --border: rgba(255,255,255,0.25);
       --text: #fff;
-      --accent: rgba(255,140,60,0.45);
+      --accent: rgba(255,140,60,0.85);
       --transition: all 0.35s ease;
       --font: 'Inter', sans-serif;
     }
@@ -23,7 +30,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: #111;
+      background: #0b0b0b;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -32,6 +39,20 @@
       font-family: var(--font);
       color: var(--text);
       overflow: hidden;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
     }
 
     .card {
@@ -46,15 +67,18 @@
       text-align: center;
       overflow: hidden;
       box-shadow: 0 0 40px rgba(255,140,60,0.15);
+      will-change: transform;
+      transform-style: preserve-3d;
       transition: transform 0.3s ease;
     }
 
     .card video {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      opacity: 0.5;
+      opacity: 0.45;
       z-index: 0;
     }
 
@@ -63,8 +87,15 @@
       z-index: 1;
     }
 
+    .avatar {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 0.75rem;
+    }
+
     .avatar img {
-      width: 150px; height: 150px;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
       border: 2px solid rgba(255,255,255,0.7);
       object-fit: cover;
@@ -72,21 +103,23 @@
     }
 
     h1 {
-      font-weight: 700; font-size: 1.8rem;
-      margin-top: 0.6rem;
+      font-weight: 700;
+      font-size: 1.8rem;
       color: #fff;
+      margin-bottom: 0.2rem;
       text-shadow: 0 1px 2px rgba(0,0,0,0.6);
     }
 
     h2 {
-      font-weight: 500; font-size: 1.1rem;
-      color: rgba(255,140,60,0.85);
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: var(--accent);
       margin-bottom: 0.5rem;
     }
 
     p {
       font-size: 0.95rem;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255,255,255,0.85);
       margin-bottom: 1.5rem;
       text-shadow: 0 1px 1px rgba(0,0,0,0.4);
     }
@@ -114,13 +147,28 @@
     }
 
     a.button svg {
-      width: 22px; height: 22px;
-      stroke: rgba(255,140,60,0.8);
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent);
       stroke-width: 2;
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
+      transition: var(--transition);
     }
+
+    @keyframes iconGlow {
+      0%, 100% { filter: drop-shadow(0 0 2px var(--accent)); }
+      50% { filter: drop-shadow(0 0 8px var(--accent)); }
+    }
+
+    @keyframes mailFlap {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+
+    a.button:hover svg { animation: iconGlow 1.4s ease-in-out infinite; }
+    a.button:hover.mail svg polyline { animation: mailFlap 0.8s ease-in-out infinite; }
 
     a.button:hover {
       background: rgba(255,140,60,0.15);
@@ -128,24 +176,22 @@
       box-shadow: 0 0 15px rgba(255,140,60,0.25);
     }
 
-    /* Ripple */
-    .ripple {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 20px; height: 20px;
-      background: radial-gradient(circle, rgba(255,140,60,0.6) 0%, rgba(255,140,60,0) 70%);
-      border-radius: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 0;
+    a.button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
     }
 
-    @keyframes rippleExpand {
-      0% { transform: translate(-50%, -50%) scale(0); opacity: 1; filter: blur(0px); }
-      60% { transform: translate(-50%, -50%) scale(5); opacity: 0.7; filter: blur(3px); }
-      100% { transform: translate(-50%, -50%) scale(8); opacity: 0; filter: blur(5px); }
+    footer {
+      margin-top: 2.5rem;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
     }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    footer a:hover { color: #fff; }
 
     /* NFC Toast */
     #nfc-toast {
@@ -154,7 +200,7 @@
       bottom: -3rem;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
       color: #fff;
       padding: 0.8rem 1.2rem;
       border-radius: 10px;
@@ -162,7 +208,7 @@
       z-index: 1000;
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,0.15);
-      box-shadow: 0 0 10px rgba(255,140,60,0.3);
+      box-shadow: 0 0 10px rgba(255,140,60,0.4);
       opacity: 0;
       display: flex;
       align-items: center;
@@ -176,130 +222,159 @@
     }
 
     .nfc-icon {
-      width: 18px; height: 18px;
-      stroke: rgba(255,140,60,0.8);
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent);
       stroke-width: 2;
       fill: none;
       stroke-linecap: round;
+      animation: iconGlow 2s ease-in-out infinite;
     }
 
-    footer {
-      margin-top: 2.5rem;
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.6);
+    /* Ripple */
+    .ripple {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, rgba(255,140,60,0.6) 0%, rgba(255,140,60,0) 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    footer a { color: rgba(255,140,60,0.9); text-decoration: none; }
-    footer a:hover { color: #fff; }
+    @keyframes rippleExpand {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 1; filter: blur(0); }
+      60% { transform: translate(-50%, -50%) scale(5); opacity: 0.7; filter: blur(3px); }
+      100% { transform: translate(-50%, -50%) scale(8); opacity: 0; filter: blur(5px); }
+    }
+
+    @media (prefers-contrast: more) {
+      body { background: #fff; color: #000; }
+      .card { background: #fff; color: #000; border: 2px solid #000; }
+      a.button { color: #000; border-color: #000; }
+    }
+
+    @media (max-width: 480px) {
+      .avatar { width: 110px; height: 110px; }
+      .card { padding: 1.5rem; }
+      h1 { font-size: 1.5rem; }
+    }
   </style>
 </head>
 
 <body>
-  <div class="card" id="card">
-    <video autoplay muted loop playsinline>
-      <source src="abstract-gradient-glass-geometry-background-2025-10-16-07-49-13-utc.mp4" type="video/mp4">
-    </video>
-    <div class="ripple" id="ripple"></div>
+  <main>
+    <section class="card" id="card" aria-label="Digital business card for Marlon Alvarez">
+      <video autoplay muted loop playsinline poster="poster.jpg">
+        <source src="abstract-gradient-glass-geometry-background-2025-10-16-07-49-13-utc.webm" type="video/webm">
+        <source src="abstract-gradient-glass-geometry-background-2025-10-16-07-49-13-utc.mp4" type="video/mp4">
+      </video>
 
-    <div class="avatar">
-      <img src="Dynamic Headshots M1 Small.jpg" alt="Marlon Alvarez">
+      <div class="ripple" id="ripple"></div>
+
+      <div class="avatar">
+        <img src="Dynamic Headshots M1 Small.jpg" alt="Portrait of Marlon Alvarez">
+      </div>
+
+      <h1>Marlon Alvarez</h1>
+      <h2>CEO | Founder</h2>
+      <p>Hueco House, LLC<br>Port St. Lucie, FL</p>
+
+      <div class="buttons">
+        <a class="button" href="tel:+17729007865" aria-label="Call Marlon Alvarez">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2
+                   19.86 19.86 0 0 1-8.63-3.07
+                   19.5 19.5 0 0 1-6-6
+                   19.86 19.86 0 0 1-3.07-8.63
+                   A2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72
+                   c.07.93.27 1.85.59 2.73a2 2 0 0 1-.45 2.11L8.09 9.91
+                   a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45
+                   c.88.32 1.8.52 2.73.59A2 2 0 0 1 22 16.92z"/></svg>
+          Call
+        </a>
+
+        <a class="button mail" href="mailto:contact@marlonalvarez.com" aria-label="Email Marlon Alvarez">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+            <polyline points="3,7 12,13 21,7"></polyline>
+          </svg>
+          Email
+        </a>
+
+        <a class="button" href="https://huecohouse.com" target="_blank" rel="noopener" aria-label="Visit Hueco House website">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg>
+          Visit Website
+        </a>
+
+        <a class="button" href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:Alvarez;Marlon;;;%0AFN:Marlon%20Alvarez%0AORG:Hueco%20House%2C%20LLC%0ATITLE:CEO%20%7C%20Founder%0ATEL:+17729007865%0AEMAIL:contact@marlonalvarez.com%0AURL:https://huecohouse.com%0AADR:;;Port%20St.%20Lucie%2C%20FL;;;;%0AEND:VCARD" download="Marlon_Alvarez.vcf" aria-label="Download contact for Marlon Alvarez">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M8 16a4 4 0 0 1 8 0"/></svg>
+          Add to Contacts
+        </a>
+      </div>
+
+      <footer>Made by <a href="https://huecohouse.com" target="_blank" rel="noopener">Hueco House</a></footer>
+    </section>
+
+    <div id="nfc-toast" role="alert">
+      <svg class="nfc-icon" viewBox="0 0 24 24">
+        <path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+        <path d="M8 12a4 4 0 0 1 8 0M10 12a2 2 0 0 1 4 0"/>
+      </svg>
+      NFC tap detected — tap “Add to Contacts” to save Marlon’s info.
     </div>
-    <h1>Marlon Alvarez</h1>
-    <h2>CEO | Founder</h2>
-    <p>Hueco House, LLC<br>Port St. Lucie, FL</p>
+  </main>
 
-    <div class="buttons">
-      <a class="button" href="tel:+17729007865">
-        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2
-                 19.86 19.86 0 0 1-8.63-3.07
-                 19.5 19.5 0 0 1-6-6
-                 19.86 19.86 0 0 1-3.07-8.63
-                 A2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72
-                 c.07.93.27 1.85.59 2.73a2 2 0 0 1-.45 2.11L8.09 9.91
-                 a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45
-                 c.88.32 1.8.52 2.73.59A2 2 0 0 1 22 16.92z"/></svg>
-        Call
-      </a>
-
-      <a class="button" href="mailto:contact@marlonalvarez.com">
-        <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none"/><path d="M22 6l-10 7L2 6"/></svg>
-        Email
-      </a>
-
-      <a class="button" href="https://huecohouse.com" target="_blank">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg>
-        Visit Website
-      </a>
-
-      <a class="button" href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:Alvarez;Marlon;;;%0AFN:Marlon%20Alvarez%0AORG:Hueco%20House%2C%20LLC%0ATITLE:CEO%20%7C%20Founder%0ATEL:+17729007865%0AEMAIL:contact@marlonalvarez.com%0AURL:https://huecohouse.com%0AADR:;;Port%20St.%20Lucie%2C%20FL;;;;%0AEND:VCARD" download="Marlon_Alvarez.vcf">
-        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M8 16a4 4 0 0 1 8 0"/></svg>
-        Add to Contacts
-      </a>
-    </div>
-
-    <footer>Made by <a href="https://huecohouse.com" target="_blank">Hueco House</a></footer>
-  </div>
-
-  <div id="nfc-toast">
-    <svg class="nfc-icon" viewBox="0 0 24 24">
-      <path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
-      <path d="M8 12a4 4 0 0 1 8 0M10 12a2 2 0 0 1 4 0"/>
-    </svg>
-    NFC tap detected — tap “Add to Contacts” to save Marlon’s info.
-  </div>
-
+  <!-- SCRIPT -->
   <script>
     const card = document.getElementById('card');
     const ripple = document.getElementById('ripple');
-    let rippleCooldown = false;
+    let timeout;
 
-    // Ripple animation
-    function triggerRipple() {
-      if (rippleCooldown) return;
-      rippleCooldown = true;
+    // Ripple Animation
+    const triggerRipple = () => {
       ripple.style.animation = 'none';
-      void ripple.offsetWidth; // restart animation
+      void ripple.offsetWidth;
       ripple.style.animation = 'rippleExpand 0.7s ease-out forwards';
-      setTimeout(() => rippleCooldown = false, 1500);
-    }
-
-    // Trigger on click/tap
+    };
     card.addEventListener('click', triggerRipple);
-    // Intro pulse
     window.addEventListener('load', () => setTimeout(triggerRipple, 400));
 
-    // Tilt effect
+    // Smooth Tilt (throttled)
     document.addEventListener('mousemove', e => {
-      const { innerWidth, innerHeight } = window;
-      const x = (e.clientX / innerWidth - 0.5) * 6;
-      const y = (e.clientY / innerHeight - 0.5) * 6;
-      card.style.transform = `rotateY(${x}deg) rotateX(${-y}deg) scale(1.02)`;
-    });
+      if (timeout) return;
+      timeout = setTimeout(() => {
+        const { innerWidth, innerHeight } = window;
+        const x = (e.clientX / innerWidth - 0.5) * 6;
+        const y = (e.clientY / innerHeight - 0.5) * 6;
+        card.style.transform = `rotateY(${x}deg) rotateX(${-y}deg) scale(1.02)`;
+        timeout = null;
+      }, 16);
+    }, { passive: true });
+
     document.addEventListener('mouseleave', () => {
       card.style.transform = 'rotateY(0deg) rotateX(0deg)';
-    });
+    }, { passive: true });
 
-    // NFC Toast logic
+    // NFC Toast
     window.addEventListener('DOMContentLoaded', async () => {
       const toast = document.getElementById('nfc-toast');
       const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.has('nfc')) showNfcToast();
+      if (urlParams.has('nfc')) showToast();
+
       if ('NDEFReader' in window) {
         try {
           const reader = new NDEFReader();
           await reader.scan();
-          reader.onreading = () => showNfcToast();
-        } catch {}
+          reader.onreading = () => showToast();
+        } catch (err) {
+          console.warn('NFC not supported or permission denied', err);
+        }
       }
-      function showNfcToast() {
+
+      function showToast() {
         toast.style.display = 'flex';
         setTimeout(() => toast.classList.add('show-toast'), 50);
-        setTimeout(() => {
-          toast.classList.remove('show-toast');
-          setTimeout(() => toast.style.display = 'none', 600);
-        }, 6000);
-      }
-    });
-  </script>
-</body>
-</html>
