@@ -8,6 +8,8 @@
   <title>Marlon Alvarez | CEO | Founder at Hueco House</title>
 
   <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- FAVICON -->
@@ -28,145 +30,188 @@
       --accent: rgba(255,140,60,0.85);
       --font: 'Inter', sans-serif;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
 
-    body{
-      font-family:var(--font);
-      background:#000;
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      overflow:hidden;
-      perspective:1000px;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .card{
-      width:420px;
-      padding:2.5rem;
-      border-radius:20px;
-      position:relative;
-      overflow:hidden;
-      border:1px solid var(--border);
-      background:var(--glass);
-      backdrop-filter:blur(var(--blur)) saturate(1.3);
-      color:#fff;
-      text-align:center;
-      transform-style:preserve-3d;
-      transition:transform .2s ease,box-shadow .4s ease;
-      box-shadow:0 0 35px rgba(255,140,60,.25);
-      animation:soft-glow 6s ease-in-out infinite;
+    body {
+      font-family: var(--font);
+      background: #000;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      overflow: hidden;
+      perspective: 1000px;
+      color: #fff;
     }
 
-    .card video{
-      position:absolute;
-      inset:-10%;
-      width:120%;
-      height:120%;
-      object-fit:cover;
-      filter:brightness(.9) saturate(1.25);
-      opacity:.65;
-      z-index:0;
-      transition:transform .3s ease-out;
+    .card {
+      width: min(420px, 100%);
+      padding: 2.5rem;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--glass);
+      backdrop-filter: blur(var(--blur)) saturate(1.3);
+      text-align: center;
+      transform-style: preserve-3d;
+      transition: transform .2s ease, box-shadow .4s ease;
+      box-shadow: 0 0 35px rgba(255,140,60,.25);
+      animation: soft-glow 6s ease-in-out infinite;
+      isolation: isolate;
     }
 
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(rgba(0,0,0,.3),rgba(255,160,80,.12));
-      mix-blend-mode:multiply;
-      z-index:1;
+    .card[data-interactive="false"] {
+      animation: none;
     }
 
-    @keyframes soft-glow{
-      0%,100%{box-shadow:0 0 25px rgba(255,140,60,.2),0 0 60px rgba(255,140,60,.1)}
-      50%{box-shadow:0 0 50px rgba(255,140,60,.4),0 0 100px rgba(255,140,60,.25)}
+    .card video {
+      position: absolute;
+      inset: -10%;
+      width: 120%;
+      height: 120%;
+      object-fit: cover;
+      filter: brightness(.9) saturate(1.25);
+      opacity: .65;
+      z-index: 0;
+      transition: transform .3s ease-out;
     }
 
-    .card::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:inherit;
-      padding:1px;
-      background:linear-gradient(45deg,rgba(255,140,60,.5),rgba(255,255,255,.1),rgba(255,140,60,.3));
-      mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-      mask-composite:exclude;
-      -webkit-mask-composite:destination-out;
-      z-index:4;
-      pointer-events:none;
-      animation:border-glow 8s linear infinite;
-      transition:filter .3s ease,opacity .3s ease;
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0,0,0,.3), rgba(255,160,80,.12));
+      mix-blend-mode: multiply;
+      z-index: 1;
     }
 
-    @keyframes border-glow{
-      0%{filter:hue-rotate(0deg) brightness(1)}
-      50%{filter:hue-rotate(20deg) brightness(1.4)}
-      100%{filter:hue-rotate(0deg) brightness(1)}
+    @keyframes soft-glow {
+      0%,100% { box-shadow: 0 0 25px rgba(255,140,60,.2), 0 0 60px rgba(255,140,60,.1); }
+      50% { box-shadow: 0 0 50px rgba(255,140,60,.4), 0 0 100px rgba(255,140,60,.25); }
     }
 
-    .lighting{
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:radial-gradient(circle at 50% 50%,rgba(255,210,130,.3),transparent 70%);
-      mix-blend-mode:overlay;
-      z-index:2;
-      transition:background-position .2s ease-out,opacity .6s ease;
-      animation:breathe 10s ease-in-out infinite;
-    }
-    @keyframes breathe{0%,100%{opacity:.3}50%{opacity:.45}}
-
-    .card-content{position:relative;z-index:3}
-    .avatar{width:150px;height:150px;margin:0 auto 1rem}
-    .avatar img{
-      width:100%;height:100%;border-radius:50%;
-      border:2px solid rgba(255,255,255,.7);
-      object-fit:cover;box-shadow:0 0 25px rgba(255,140,60,.3)
-    }
-    h1{font-size:1.8rem;font-weight:700;margin-bottom:.3rem}
-    h2{font-size:1.1rem;color:var(--accent);margin-bottom:.6rem}
-    p{font-size:.95rem;color:rgba(255,255,255,.9);margin-bottom:1.5rem}
-
-    .buttons{display:flex;flex-direction:column;gap:.75rem}
-    a.button{
-      background:rgba(0,0,0,.3);
-      border:1px solid rgba(255,255,255,.25);
-      color:#fff;
-      text-decoration:none;
-      padding:.9rem 1.2rem;
-      border-radius:10px;
-      font-weight:500;
-      transition:all .3s ease;
-      backdrop-filter:blur(6px);
-    }
-    a.button:hover{
-      background:rgba(255,140,60,.15);
-      transform:translateY(-3px);
-      box-shadow:0 0 15px rgba(255,140,60,.25);
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(45deg, rgba(255,140,60,.5), rgba(255,255,255,.1), rgba(255,140,60,.3));
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: destination-out;
+      z-index: 4;
+      pointer-events: none;
+      animation: border-glow 8s linear infinite;
+      transition: filter .3s ease, opacity .3s ease;
     }
 
-    footer{
-      margin-top:2.5rem;
-      padding-top:1.25rem;
-      border-top:1px solid rgba(255,255,255,.15);
-      font-size:.8rem;
-      color:rgba(255,255,255,.7);
-      letter-spacing:.5px;
+    @keyframes border-glow {
+      0% { filter: hue-rotate(0deg) brightness(1); }
+      50% { filter: hue-rotate(20deg) brightness(1.4); }
+      100% { filter: hue-rotate(0deg) brightness(1); }
     }
-    footer a{
-      color:var(--accent);
-      text-decoration:none;
-      font-weight:600;
+
+    .lighting {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, rgba(255,210,130,.3), transparent 70%);
+      mix-blend-mode: overlay;
+      z-index: 2;
+      transition: background-position .2s ease-out, opacity .6s ease;
+      animation: breathe 10s ease-in-out infinite;
     }
-    footer a:hover{color:#fff;text-shadow:0 0 6px rgba(255,140,60,.6)}
+
+    @keyframes breathe { 0%,100% { opacity: .3; } 50% { opacity: .45; } }
+
+    .card-content { position: relative; z-index: 3; }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 1rem;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.7);
+      object-fit: cover;
+      box-shadow: 0 0 25px rgba(255,140,60,.3);
+    }
+
+    h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: .3rem; }
+    h2 { font-size: 1.1rem; color: var(--accent); margin-bottom: .6rem; letter-spacing: .4px; }
+    p { font-size: .95rem; color: rgba(255,255,255,.9); margin-bottom: 1.5rem; line-height: 1.5; }
+
+    .buttons { display: flex; flex-direction: column; gap: .75rem; }
+
+    a.button {
+      background: rgba(0,0,0,.3);
+      border: 1px solid rgba(255,255,255,.25);
+      color: #fff;
+      text-decoration: none;
+      padding: .9rem 1.2rem;
+      border-radius: 10px;
+      font-weight: 500;
+      transition: all .3s ease;
+      backdrop-filter: blur(6px);
+      position: relative;
+    }
+
+    a.button:hover {
+      background: rgba(255,140,60,.15);
+      transform: translateY(-3px);
+      box-shadow: 0 0 15px rgba(255,140,60,.25);
+    }
+
+    a.button:focus-visible {
+      outline: 3px solid rgba(255,140,60,.6);
+      outline-offset: 3px;
+      box-shadow: 0 0 20px rgba(255,140,60,.3);
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,.15);
+      font-size: .8rem;
+      color: rgba(255,255,255,.7);
+      letter-spacing: .5px;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover { color: #fff; text-shadow: 0 0 6px rgba(255,140,60,.6); }
+
+    @media (max-width: 480px) {
+      body { padding: 1rem; }
+      .card { padding: 2rem; }
+      .avatar { width: 130px; height: 130px; }
+      h1 { font-size: 1.6rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+      body { perspective: none; }
+      .card { transform: none !important; box-shadow: 0 0 20px rgba(255,140,60,.25); }
+      .card video { transform: none !important; }
+    }
   </style>
 </head>
 
 <body>
-  <section class="card" id="card">
-    <video id="bgVideo" autoplay muted loop playsinline>
+  <main class="card" id="card" aria-labelledby="name" aria-describedby="role location" data-interactive="true">
+    <video id="bgVideo" autoplay muted loop playsinline poster="3.jpg">
       <source src="background.mp4" type="video/mp4">
     </video>
 
@@ -174,58 +219,98 @@
 
     <div class="card-content">
       <div class="avatar">
-        <img src="Dynamic Headshots M1 Small.jpg" alt="Portrait of Marlon Alvarez">
+        <img src="Dynamic Headshots M1 Small.jpg" alt="Portrait of Marlon Alvarez" loading="lazy" width="300" height="300">
       </div>
-      <h1>Marlon Alvarez</h1>
-      <h2>CEO | Founder</h2>
-      <p>Hueco House LLC<br>Port St. Lucie FL</p>
+      <h1 id="name">Marlon Alvarez</h1>
+      <h2 id="role">CEO | Founder</h2>
+      <p id="location">Hueco House LLC<br>Port St. Lucie FL</p>
 
       <div class="buttons">
         <a class="button" href="tel:+17729007865">Call</a>
         <a class="button" href="mailto:contact@marlonalvarez.com">Email</a>
-        <a class="button" href="https://huecohouse.com" target="_blank">Visit Website</a>
+        <a class="button" href="https://huecohouse.com" target="_blank" rel="noopener">Visit Website</a>
         <a class="button"
            href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:Alvarez;Marlon;;;%0AFN:Marlon%20Alvarez%0AORG:Hueco%20House%2C%20LLC%0ATITLE:CEO%20%7C%20Founder%0ATEL:+17729007865%0AEMAIL:contact@marlonalvarez.com%0AURL:https://huecohouse.com%0AADR:;;Port%20St.%20Lucie%2C%20FL;;;;%0AEND:VCARD"
            download="Marlon_Alvarez.vcf">Add to Contacts</a>
       </div>
 
       <footer>
-        © 2025 <a href="https://huecohouse.com" target="_blank">Hueco House</a> · All Rights Reserved
+        © 2025 <a href="https://huecohouse.com" target="_blank" rel="noopener">Hueco House</a> · All Rights Reserved
       </footer>
     </div>
-  </section>
+  </main>
 
   <script>
-    const card=document.getElementById('card');
-    const bgVideo=document.getElementById('bgVideo');
-    const lighting=document.getElementById('lighting');
-    let idleTimeout;
+    (() => {
+      const card = document.getElementById('card');
+      const bgVideo = document.getElementById('bgVideo');
+      const lighting = document.getElementById('lighting');
+      const pointerFine = window.matchMedia('(pointer: fine)');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let idleTimeout;
+      let isBound = false;
+      const touchOptions = { passive: true };
 
-    document.addEventListener('mousemove',e=>{
-      const x=(e.clientX/window.innerWidth-0.5)*10;
-      const y=(e.clientY/window.innerHeight-0.5)*10;
+      const resetCard = () => {
+        card.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+        bgVideo.style.transform = 'translate(0,0) scale(1)';
+        lighting.style.background = 'radial-gradient(circle at 50% 50%, rgba(255,210,130,0.3), transparent 70%)';
+        card.style.boxShadow = '0 0 35px rgba(255,140,60,0.25)';
+      };
 
-      card.style.transform=`rotateY(${x}deg) rotateX(${-y}deg) scale(1.03)`;
-      const moveX=-x*3, moveY=y*3;
-      bgVideo.style.transform=`translate(${moveX}px,${moveY}px) scale(1.05)`;
+      const handleMove = event => {
+        const point = 'touches' in event ? event.touches[0] : event;
+        const x = (point.clientX / window.innerWidth - 0.5) * 10;
+        const y = (point.clientY / window.innerHeight - 0.5) * 10;
 
-      const lightX=e.clientX/window.innerWidth*100;
-      const lightY=e.clientY/window.innerHeight*100;
-      const intensity=Math.min(Math.max(Math.abs(x)+Math.abs(y),.5),1.5);
-      lighting.style.background=`radial-gradient(circle at ${lightX}% ${lightY}%, rgba(255,210,130,${0.25+intensity*0.15}), transparent 70%)`;
-      card.style.boxShadow=`0 0 ${25+intensity*25}px rgba(255,140,60,${0.25+intensity*0.2})`;
+        card.style.transform = `rotateY(${x}deg) rotateX(${-y}deg) scale(1.03)`;
+        const moveX = -x * 3;
+        const moveY = y * 3;
+        bgVideo.style.transform = `translate(${moveX}px,${moveY}px) scale(1.05)`;
 
-      lighting.style.animation='none';
-      clearTimeout(idleTimeout);
-      idleTimeout=setTimeout(()=>lighting.style.animation='breathe 10s ease-in-out infinite',2500);
-    });
+        const lightX = (point.clientX / window.innerWidth) * 100;
+        const lightY = (point.clientY / window.innerHeight) * 100;
+        const intensity = Math.min(Math.max(Math.abs(x) + Math.abs(y), .5), 1.5);
+        lighting.style.background = `radial-gradient(circle at ${lightX}% ${lightY}%, rgba(255,210,130,${0.25 + intensity * 0.15}), transparent 70%)`;
+        card.style.boxShadow = `0 0 ${25 + intensity * 25}px rgba(255,140,60,${0.25 + intensity * 0.2})`;
 
-    document.addEventListener('mouseleave',()=>{
-      card.style.transform='rotateY(0deg) rotateX(0deg) scale(1)';
-      bgVideo.style.transform='translate(0,0) scale(1)';
-      lighting.style.background='radial-gradient(circle at 50% 50%, rgba(255,210,130,0.3), transparent 70%)';
-      card.style.boxShadow='0 0 35px rgba(255,140,60,0.25)';
-    });
+        lighting.style.animation = 'none';
+        clearTimeout(idleTimeout);
+        idleTimeout = setTimeout(() => lighting.style.animation = 'breathe 10s ease-in-out infinite', 2500);
+      };
+
+      const unbindInteractions = () => {
+        if (!isBound) return;
+        document.removeEventListener('mousemove', handleMove);
+        document.removeEventListener('touchmove', handleMove, touchOptions);
+        document.removeEventListener('mouseleave', resetCard);
+        isBound = false;
+      };
+
+      const bindInteractions = () => {
+        if (isBound) return;
+        document.addEventListener('mousemove', handleMove);
+        document.addEventListener('touchmove', handleMove, touchOptions);
+        document.addEventListener('mouseleave', resetCard);
+        isBound = true;
+      };
+
+      const evaluateInteractivity = () => {
+        const interactive = pointerFine.matches && !prefersReducedMotion.matches;
+        card.dataset.interactive = interactive ? 'true' : 'false';
+        if (interactive) {
+          bindInteractions();
+        } else {
+          unbindInteractions();
+          resetCard();
+        }
+      };
+
+      evaluateInteractivity();
+      pointerFine.addEventListener('change', evaluateInteractivity);
+      prefersReducedMotion.addEventListener('change', evaluateInteractivity);
+      window.addEventListener('blur', resetCard);
+    })();
   </script>
 </body>
 </html>
