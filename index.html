@@ -129,7 +129,7 @@ p{font-size:.95rem;color:var(--muted);margin-bottom:1.4rem;line-height:1.5;}
   gap:.7rem;
 }
 .logo-pill{
-  height:58px;
+  min-height:76px;
   border-radius:14px;
   border:1px solid rgba(255,255,255,.25);
   background:rgba(255,255,255,.06);
@@ -140,16 +140,18 @@ p{font-size:.95rem;color:var(--muted);margin-bottom:1.4rem;line-height:1.5;}
   transition:all .35s ease;
 }
 .logo-pill{
-  padding:.75rem;
+  padding:.95rem .9rem;
 }
 .logo-pill img{
   width:100%;
-  max-width:190px;
-  height:30px;
+  max-width:100%;
+  height:48px;
   object-fit:contain;
   object-position:center;
   filter:drop-shadow(0 2px 8px rgba(255,255,255,.18));
 }
+.logo-pill.logo-hueco img{height:42px;}
+.logo-pill.logo-nexo img{height:46px;}
 .logo-pill .logo-fallback{
   display:none;
   color:#fff;
@@ -241,11 +243,11 @@ footer a:hover{color:var(--accent)}
     <p>Built for high-end experiences.<br>Hueco House LLC · Port St. Lucie, FL</p>
 
     <div class="company-strip" aria-label="Founded companies">
-      <a class="logo-pill" href="https://huecohouse.com" target="_blank" rel="noopener" aria-label="Hueco House">
+      <a class="logo-pill logo-hueco" href="https://huecohouse.com" target="_blank" rel="noopener" aria-label="Hueco House">
         <img src="hueco-house-logo-white.svg" alt="Hueco House logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
         <span class="logo-fallback">Hueco House</span>
       </a>
-      <a class="logo-pill" href="https://nexowerks.com" target="_blank" rel="noopener" aria-label="Nexo Werks">
+      <a class="logo-pill logo-nexo" href="https://nexowerks.com" target="_blank" rel="noopener" aria-label="Nexo Werks">
         <img src="nexo-werks-logo-white.svg" alt="Nexo Werks logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
         <span class="logo-fallback">Nexo Werks</span>
       </a>
