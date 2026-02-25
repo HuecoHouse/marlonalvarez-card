@@ -129,7 +129,7 @@ p{font-size:.95rem;color:var(--muted);margin-bottom:1.4rem;line-height:1.5;}
   gap:.7rem;
 }
 .logo-pill{
-  min-height:76px;
+  height:58px;
   border-radius:14px;
   border:1px solid rgba(255,255,255,.25);
   background:rgba(255,255,255,.06);
@@ -139,27 +139,8 @@ p{font-size:.95rem;color:var(--muted);margin-bottom:1.4rem;line-height:1.5;}
   text-decoration:none;
   transition:all .35s ease;
 }
-.logo-pill{
-  padding:.95rem .9rem;
-}
-.logo-pill img{
-  width:100%;
-  max-width:100%;
-  height:48px;
-  object-fit:contain;
-  object-position:center;
-  filter:drop-shadow(0 2px 8px rgba(255,255,255,.18));
-}
-.logo-pill.logo-hueco img{height:42px;}
-.logo-pill.logo-nexo img{height:46px;}
-.logo-pill .logo-fallback{
-  display:none;
-  color:#fff;
-  font-size:.85rem;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  font-weight:600;
-}
+.logo-pill svg{width:88%;max-width:160px;height:28px}
+.logo-pill path,.logo-pill rect,.logo-pill text{fill:#ffffff}
 .logo-pill:hover{
   transform:translateY(-2px);
   background:rgba(255,255,255,.12);
@@ -243,13 +224,19 @@ footer a:hover{color:var(--accent)}
     <p>Built for high-end experiences.<br>Hueco House LLC · Port St. Lucie, FL</p>
 
     <div class="company-strip" aria-label="Founded companies">
-      <a class="logo-pill logo-hueco" href="https://huecohouse.com" target="_blank" rel="noopener" aria-label="Hueco House">
-        <img src="hueco-house-logo-white.svg" alt="Hueco House logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
-        <span class="logo-fallback">Hueco House</span>
+      <a class="logo-pill" href="https://huecohouse.com" target="_blank" rel="noopener" aria-label="Hueco House">
+        <svg viewBox="0 0 220 48" role="img" aria-hidden="true">
+          <rect x="2" y="5" width="38" height="38" rx="8"></rect>
+          <rect x="11" y="13" width="8" height="22" fill="#05060b"></rect>
+          <rect x="23" y="13" width="8" height="22" fill="#05060b"></rect>
+          <text x="50" y="31" font-family="Inter, sans-serif" font-size="20" font-weight="600" letter-spacing="2">HUECO HOUSE</text>
+        </svg>
       </a>
-      <a class="logo-pill logo-nexo" href="https://nexowerks.com" target="_blank" rel="noopener" aria-label="Nexo Werks">
-        <img src="nexo-werks-logo-white.svg" alt="Nexo Werks logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
-        <span class="logo-fallback">Nexo Werks</span>
+      <a class="logo-pill" href="https://marlonalvarez.com" target="_blank" rel="noopener" aria-label="Marlon Alvarez Ventures">
+        <svg viewBox="0 0 220 48" role="img" aria-hidden="true">
+          <path d="M18 38V10h6l8 13 8-13h6v28h-6V22l-8 12-8-12v16z"></path>
+          <text x="58" y="31" font-family="Inter, sans-serif" font-size="20" font-weight="600" letter-spacing="1.5">ALVAREZ VENTURES</text>
+        </svg>
       </a>
     </div>
 
