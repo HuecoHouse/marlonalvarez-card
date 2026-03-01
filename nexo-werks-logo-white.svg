@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 100" role="img" aria-label="Nexo Werks">
+  <path d="M20 78V22h13l33 38V22h14v56H67L34 40v38z" fill="#fff"/>
+  <path d="M92 22h16l17 23 17-23h16l-25 33 27 23h-18l-18-16-18 16H89l27-23z" fill="#fff"/>
+  <text x="180" y="64" font-family="Inter, Arial, sans-serif" font-size="37" fill="#fff" font-weight="600" letter-spacing="2">NEXO WERKS</text>
+</svg>
